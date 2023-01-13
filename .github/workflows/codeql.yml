@@ -33,10 +33,6 @@ jobs:
       fail-fast: false
       matrix:
         language: [ 'go' ]
-        # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby' ]
-        # Use only 'java' to analyze code written in Java, Kotlin or both
-        # Use only 'javascript' to analyze code written in JavaScript, TypeScript or both
-        # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
 
     steps:
     - name: Checkout repository
@@ -47,7 +43,8 @@ jobs:
       uses: github/codeql-action/init@v2
       with:
         languages: ${{ matrix.language }}
-        queries: security-extended,codeql/go-queries:experimental/CWE-327/WeakCryptoAlgorithm.ql
+        queries: security-extended
+        packs: codeql/go-queries:experimental/CWE-327/WeakCryptoAlgorithm.ql
 
     # Autobuild attempts to build any compiled languages  (C/C++, C#, Go, or Java).
     # If this step fails, then you should remove it and run the build manually (see below)
